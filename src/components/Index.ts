@@ -1,2 +1,2 @@
-export { default as Tiles } from './Tiles/Index';
+export { default as Tile } from './Tile/Index';
 export { default as GameBoard } from './GameBoard/Index';
