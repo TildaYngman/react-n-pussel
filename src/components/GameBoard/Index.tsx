@@ -1,7 +1,7 @@
 import React from 'react';
-import { TileProps } from '../types/types';
+import { TileProps } from '../../types/types';
 
-const Tile: React.FC<TileProps> = ({ value, onClick }) => {
+const GameBoard: React.FC<TileProps> = ({ value, onClick }) => {
   return (
     <button
       className="tile"
@@ -12,4 +12,6 @@ const Tile: React.FC<TileProps> = ({ value, onClick }) => {
   );
 };
 
-export default Tile;
+export default GameBoard;
+
+ 
