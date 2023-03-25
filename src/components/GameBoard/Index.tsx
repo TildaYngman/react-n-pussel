@@ -1,17 +1,8 @@
 import React from 'react';
-import { TileProps } from '../../types/types';
+import { TileProps, BoardProps } from '../../types/types';
 
-const GameBoard: React.FC<TileProps> = ({ value, onClick }) => {
-  return (
-    <button
-      className="tile"
-      onClick={onClick}
-    >
-      {value}
-    </button>
-  );
+const GameBoard: React.FC<BoardProps> = ({ cols, rows }) => {
+  return <></>;
 };
 
 export default GameBoard;
-
- 
