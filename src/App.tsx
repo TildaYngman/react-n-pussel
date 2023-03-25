@@ -1,16 +1,14 @@
 import React from 'react';
 import './styles/App.css';
+import { GameBoard } from './components/Index';
 
-function App() {
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          15-pussel
-        </p>
-      </header>
-    </div>
+    <GameBoard
+      rows={4} //Here You can change the number of rows
+      cols={4} //Here You can change the number of columns
+    />
   );
-}
+};
 
 export default App;
