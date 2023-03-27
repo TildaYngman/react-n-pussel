@@ -1,12 +1,14 @@
 import React from 'react';
-import { config } from '../utils/config';
-import { shuffleTiles } from '../utils/shuffleTiles';
-import { isAdjacentToEmptyTile } from '../utils/adjacentToEmptyTile';
-import { isSorted } from '../utils/sortedArray';
-// import { useStore } from '../../hooks/zustandStore';
+import {
+  config,
+  shuffleTiles,
+  isAdjacentToEmptyTile,
+  isSorted,
+  generateTiles,
+} from '../../utils/index';
 import { Tile } from '../index';
 import { useState, useEffect } from 'react';
-import './index.css';
+import './gameBoard.css';
 
 //Notes
 //Overcomplicated how to keep the rows and cols in the ui and implemented useRef.
@@ -17,24 +19,10 @@ const GameBoard: React.FC = () => {
   const [tiles, setTiles] = useState<number[]>([]);
   const [numberOfClicks, setNumberOfClicks] = useState<number>(0);
 
-//move the generateTiles to utils
+  //move the generateTiles to utils
 
   useEffect(() => {
-    const generateTiles = (): void => {
-      const tileCount = config.rows * config.cols;
-      const newTiles = Array.from({ length: tileCount }, (_, i) => i + 1); //Array.from() creates a shallow array form an array or array like object. It takes two arguments the first one is the current elements value which doesent matter and the second one is the index.
-      newTiles[tileCount - 1] = 0; // tile 0
-
-      for (let i = newTiles.length - 1; i > 0; i--) {
-        const randomIndex = Math.floor(Math.random() * (i + 1));
-        [newTiles[i], newTiles[randomIndex]] = [
-          newTiles[randomIndex],
-          newTiles[i],
-        ];
-      }
-      setTiles(newTiles);
-    };
-    generateTiles();
+    generateTiles(setTiles);
   }, [config.rows, config.cols]);
 
   const handleClick = (i: number) => {
@@ -43,7 +31,6 @@ const GameBoard: React.FC = () => {
     const isAdjacent = isAdjacentToEmptyTile(clickedTileIndex, emptyTileIndex);
 
     if (isAdjacent) {
-
       //make a swap tiles function and have it in utils
       const newTiles = [...tiles];
       newTiles[emptyTileIndex] = i;
@@ -87,7 +74,9 @@ const GameBoard: React.FC = () => {
         </div>
       </div>
       <div className="randomize_btn_container">
-        <button onClick={() => shuffleTiles(tiles, setTiles, setNumberOfClicks)}>
+        <button
+          onClick={() => shuffleTiles(tiles, setTiles, setNumberOfClicks)}
+        >
           Slumpa
         </button>
       </div>
