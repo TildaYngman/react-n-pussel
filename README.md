@@ -10,6 +10,8 @@ To move a tile, simply click on it. A tile can only be moved if it is next to th
 
 To start over with a new board, click on the "Shuffle" button to randomly rearrange the tiles and generate a fresh board.
 
+### To adjust the number of tiles open utils/config.ts and change the numbers in rows and cols.
+
 Good luck and have fun!
 
 ### Requirements for the project
@@ -39,4 +41,3 @@ Then run:
 To run the app in the development mode.
 Open (http://localhost:3000) to view it in the browser.
 
-To adjust the number of tiles open utils/config.ts and change the numbers in rows and cols.
