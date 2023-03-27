@@ -12,11 +12,6 @@ import { Tile } from '../index';
 import { useState, useEffect } from 'react';
 import './gameBoard.css';
 
-//Notes
-//Overcomplicated how to keep the rows and cols in the ui and implemented useRef.
-//Picking up the tiles and the board through the useRef and trying to alter the css through that.
-//Eventually found a better solution of just using grid.
-
 const GameBoard: React.FC = () => {
   const [tiles, setTiles] = useState<number[]>([]);
   const [numberOfClicks, setNumberOfClicks] = useState<number>(0);

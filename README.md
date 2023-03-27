@@ -11,6 +11,19 @@ To start over with a new board, click on the "Shuffle" button to randomly rearra
 
 Good luck and have fun!
 
+
+Requirements for the project
+
+- [x] The website should be responsive and work on mobile, tablet, etc.
+- [x] The tiles should be numbered from 1 and upwards.
+- [x] There should be exactly one empty tile.
+- [x] Tiles are moved by clicking on a tile in the same row or column as the empty  tile, which moves the clicked tile.
+- [ ] all tiles between it and the empty tile one step towards the empty tile.
+- [x] All text should be in the Google font Open Sans.
+- [x] The initial order of the tiles should be randomized.
+- [x] There should be a button to shuffle the order.
+- [x] If the user solves the puzzle, it should be displayed on the screen in a suitable way.
+
 # How to Start the project 
 
 In the project directory, first run:
