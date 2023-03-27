@@ -8,6 +8,5 @@ export const swapTiles = (
   const newTiles = [...tiles];
   newTiles[emptyTileIndex] = i;
   newTiles[clickedTileIndex] = 0;
-  console.log(newTiles);
   setTiles(newTiles);
 };
