@@ -18,8 +18,15 @@
   width: 100vw;
   display: flex;
   padding-top: 1rem;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.win_message {
+  width: auto;
+  padding: 1rem;
+  color: green;
 }
 
 .randomize_btn_container button {
