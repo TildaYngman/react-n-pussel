@@ -3,13 +3,15 @@ import { TileProps } from '../../types/types';
 import './tile.css';
 
 const Tile: React.FC<TileProps> = ({ value, onClick }) => {
+  const isEmptyTile = value === 0;
+
   return (
-    <button
-      className="tile"
+    <div
+      className={`tile ${isEmptyTile ? 'empty' : ''}`}
       onClick={onClick}
     >
-      {value}
-    </button>
+      {isEmptyTile ? '' : value}
+    </div>
   );
 };
 

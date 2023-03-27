@@ -1,30 +1,23 @@
 import React from 'react';
-import { config } from '../utils/utils';
+import { config } from '../utils/config';
+import { shuffleTiles } from '../utils/shuffleTiles';
+import { isAdjacentToEmptyTile } from '../utils/adjacentToEmptyTile';
+import { isSorted } from '../utils/sortedArray';
 // import { useStore } from '../../hooks/zustandStore';
 import { Tile } from '../index';
 import { useState, useEffect } from 'react';
 import './index.css';
 
+//Notes
+//Overcomplicated how to keep the rows and cols in the ui and implemented useRef.
+//Picking up the tiles and the board through the useRef and trying to alter the css through that.
+//Eventually found a better solution of just using grid.
+
 const GameBoard: React.FC = () => {
-  // const { tiles, setTiles } = useStore((state) => ({
-  //   tiles: state.tiles,
-  //   setTiles: state.setTiles,
-  // }));
-
-  //Height and width of the board.
-  //if width 100% / by number of cols set flex basis to 100%/number of cols
-
   const [tiles, setTiles] = useState<number[]>([]);
+  const [numberOfClicks, setNumberOfClicks] = useState<number>(0);
 
-  // const randomize = () => {
-  //   for (let i = newTiles.length - 1; i > 0; i--) {
-  //     const randomIndex = Math.floor(Math.random() * (i + 1));
-  //     [newTiles[i], newTiles[randomIndex]] = [
-  //       newTiles[randomIndex],
-  //       newTiles[i],
-  //     ];
-  //   }
-  // }
+//move the generateTiles to utils
 
   useEffect(() => {
     const generateTiles = (): void => {
@@ -39,7 +32,6 @@ const GameBoard: React.FC = () => {
           newTiles[i],
         ];
       }
-
       setTiles(newTiles);
     };
     generateTiles();
@@ -48,33 +40,56 @@ const GameBoard: React.FC = () => {
   const handleClick = (i: number) => {
     const clickedTileIndex = tiles.indexOf(i);
     const emptyTileIndex = tiles.indexOf(0);
-    const emptyRow = Math.floor(emptyTileIndex / config.cols);
-    const emptyCol = emptyTileIndex % config.cols; //calculates the index of the row and column where the 0 tile is
-    const tileRow = Math.floor(clickedTileIndex / config.cols); //calculates the index of what row and colomn the clicked tile is in.
-    const tileCol = clickedTileIndex % config.cols;
-    const isAdjacent =
-      Math.abs(emptyRow - tileRow) + Math.abs(emptyCol - tileCol) === 1;
+    const isAdjacent = isAdjacentToEmptyTile(clickedTileIndex, emptyTileIndex);
+
     if (isAdjacent) {
+
+      //make a swap tiles function and have it in utils
       const newTiles = [...tiles];
       newTiles[emptyTileIndex] = i;
       newTiles[clickedTileIndex] = 0;
+      console.log(newTiles);
       setTiles(newTiles);
+    }
+
+    if (clickedTileIndex !== emptyTileIndex) {
+      setNumberOfClicks(numberOfClicks + 1);
     }
   };
 
+  useEffect(() => {
+    console.log('clicks', numberOfClicks);
+    if (numberOfClicks !== 0) {
+      const sorted = isSorted(tiles);
+      if (sorted) {
+        console.log(`You won in ${numberOfClicks}`);
+      }
+    }
+  }, [numberOfClicks]);
+
   return (
     <>
-      <div className="game_board">
-        {tiles.map((value, i) => (
-          <Tile
-            key={i}
-            value={value}
-            onClick={() => handleClick(value)}
-          />
-        ))}
+      <div className="game_board_container">
+        <div
+          className="game_board"
+          style={{
+            gridTemplateColumns: `repeat(${config.cols}, 1fr)`,
+            gridTemplateRows: `repeat(${config.rows}, 1fr)`,
+          }}
+        >
+          {tiles.map((value, i) => (
+            <Tile
+              key={i}
+              value={value}
+              onClick={() => handleClick(value)}
+            />
+          ))}
+        </div>
       </div>
       <div className="randomize_btn_container">
-        <button>Slumpa</button>
+        <button onClick={() => shuffleTiles(tiles, setTiles, setNumberOfClicks)}>
+          Slumpa
+        </button>
       </div>
     </>
   );

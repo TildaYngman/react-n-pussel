@@ -7,3 +7,7 @@ export type BoardProps = {
   rows: number;
   cols: number;
 };
+
+export interface IBordRef {
+  width: number;
+}

@@ -1,3 +1,16 @@
+React-n-pussel
+
+This is a sliding puzzle game built with React, TypeScript, CSS.
+
+How to play:
+The aim of the game is to put the tiles in a sequence of numbers starting with 1 in the upper left corner and leaving the blank space in the lower right corner.
+
+To move a tile, simply click on it. A tile can only be moved if it is next to the blank space, and it can only be moved in a vertical or horizontal direction.
+
+To start over with a new board, click on the "Shuffle" button to randomly rearrange the tiles and generate a fresh board.
+
+Good luck and have fun!
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
