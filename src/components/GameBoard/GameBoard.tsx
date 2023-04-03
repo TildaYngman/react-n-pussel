@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   config,
   shuffleTiles,
@@ -6,11 +6,11 @@ import {
   isSorted,
   generateTiles,
   swapTiles,
-} from '../../utils/index';
+} from "../../utils/index";
 
-import { Tile } from '../index';
-import { useState, useEffect } from 'react';
-import './gameBoard.css';
+import { Tile } from "../Index";
+import { useState, useEffect } from "react";
+import "./gameBoard.css";
 
 const GameBoard: React.FC = () => {
   const [tiles, setTiles] = useState<number[]>([]);
@@ -55,11 +55,7 @@ const GameBoard: React.FC = () => {
           }}
         >
           {tiles.map((value, i) => (
-            <Tile
-              key={i}
-              value={value}
-              onClick={() => handleClick(value)}
-            />
+            <Tile key={i} value={value} onClick={() => handleClick(value)} />
           ))}
         </div>
       </div>
@@ -68,7 +64,9 @@ const GameBoard: React.FC = () => {
           {isWinning ? <h1>You won in {numberOfClicks} moves!</h1> : null}
         </div>
         <button
-          onClick={() => shuffleTiles(tiles, setTiles, setNumberOfClicks, setIsWinning)}
+          onClick={() =>
+            shuffleTiles(tiles, setTiles, setNumberOfClicks, setIsWinning)
+          }
         >
           Slumpa
         </button>
