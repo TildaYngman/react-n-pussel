@@ -19,7 +19,7 @@ const GameBoard: React.FC = () => {
 
   useEffect(() => {
     generateTiles(setTiles);
-  }, [config.rows, config.cols]);
+  }, []); // could be removed since it only needs to run of firs render and mutating config would not cause it to rerender.
 
   const handleClick = (i: number) => {
     const clickedTileIndex = tiles.indexOf(i);
@@ -42,7 +42,7 @@ const GameBoard: React.FC = () => {
         setIsWinning(true);
       }
     }
-  }, [numberOfClicks]);
+  }, [numberOfClicks]);// Add tiles because it isSorted need tiles, and that wouyld cause the useEffect to run if tiles is updated.
 
   return (
     <>
